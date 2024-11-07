@@ -1,0 +1,5 @@
+# Ingore Python evn
+.venv/
+
+# Ingore Streamlit Configuration Files
+.streamlit/
