@@ -3,7 +3,7 @@
 The main framework is from: link:https://github.com/neo4j-graphacademy/llm-chatbot-python.git[Build an Neo4j-backed Chatbot using Python^]
 
 
-== Running the application
+== Prepare before running
 
 
 To run the application, you must install the libraries listed in `requirements.txt`.
@@ -11,16 +11,51 @@ To run the application, you must install the libraries listed in `requirements.t
 pip install -r requirements.txt
 
 
-Create a new file, .streamlit/secrets.toml, and copy the following text, adding your OpenAI API key.
-[source,sh]
+Create a new file, `.streamlit/secrets.toml`, and copy the following text, adding your OpenAI API key.
+[source,toml]
+====
 OPENAI_API_KEY = "sk-..."
 OPENAI_MODEL = "gpt-4"
+====
 
-
-Then run the `streamlit run` command to start the app on link:http://localhost:8501/[http://localhost:8501/^].
-[source,sh]
-streamlit run bot.py
-
+[.red]
 ====
 Ensure you do not share or include your API keys in a git commit. The .gitignore file includes the .streamlit/secrets.toml file, so git won’t push the API key to Github.
 ====
+
+Another Thing you should do is connect to the Neo4j instance, you can create your neo4j instance here link:https://sandbox.neo4j.com/[Neo4j Sandbox^]
+
+Once you have your own instance, you will get all information like below.
+[cols="1,2"]
+|===
+|**Scheme** |bolt
+|**Connection URL** |34.201.16.168
+|**Username** |neo4j
+|**Password** |outlets-commitments-warehouses
+|===
+
+Then, please also add your Neo4j credentials into `.streamlit/secrets.toml`.
+[source,toml]
+----
+OPENAI_API_KEY = "sk-..."
+OPENAI_MODEL = "gpt-4"
+
+NEO4J_URI = "bolt://34.201.16.168:7687"
+NEO4J_USERNAME = "neo4j"
+NEO4J_PASSWORD = "outlets-commitments-warehouses"
+----
+
+Before you start the bot, you need to import data into the neo4j, please run `importAirportInformation.py` and `importHighSpeedRailStationInformation.py`
+[source,sh]
+----
+# make sure your
+python3 importAirportInformation.py
+python3 importHighSpeedRailStationInformation.py
+----
+
+== Running the application
+Now run the `streamlit run` command to start the app on link:http://localhost:8501/[http://localhost:8501/^].
+[source,sh]
+streamlit run bot.py
+
+Let's chat now!
