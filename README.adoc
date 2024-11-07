@@ -1,19 +1,26 @@
-= Build an Neo4j-backed Chatbot using Python
+= This is a chatbot answer questions about restaurants and lounges at airports/train stations
 
-This repository accompanies the link:https://graphacademy.neo4j.com/courses/llm-chatbot-python/?ref=github[Build an Neo4j-backed Chatbot using Python^] course on link:https://graphacademy.neo4j.com/?ref=github[Neo4j GraphAcademy^].
-
-For a complete walkthrough of this repository, link:https://graphacademy.neo4j.com/courses/llm-chatbot-python/?ref=github[enrol now^].
+The main framework is from: link:https://github.com/neo4j-graphacademy/llm-chatbot-python.git[Build an Neo4j-backed Chatbot using Python^]
 
 
 == Running the application
 
-To run the application, you must install the libraries listed in `requirements.txt`.
 
+To run the application, you must install the libraries listed in `requirements.txt`.
 [source,sh]
 pip install -r requirements.txt
 
 
-Then run the `streamlit run` command to start the app on link:http://localhost:8501/[http://localhost:8501/^].
+Create a new file, .streamlit/secrets.toml, and copy the following text, adding your OpenAI API key.
+[source,sh]
+OPENAI_API_KEY = "sk-..."
+OPENAI_MODEL = "gpt-4"
 
+
+Then run the `streamlit run` command to start the app on link:http://localhost:8501/[http://localhost:8501/^].
 [source,sh]
 streamlit run bot.py
+
+====
+Ensure you do not share or include your API keys in a git commit. The .gitignore file includes the .streamlit/secrets.toml file, so git won’t push the API key to Github.
+====
